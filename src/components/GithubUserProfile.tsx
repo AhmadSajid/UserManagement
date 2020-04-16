@@ -26,7 +26,7 @@ function GithubUserProfile(props: GithubUserProfileProps) {
         fetch(githubApi)
             .then(response => response.json())
             .then(user => setUserProfile(user));
-    }, [])
+    }, [githubApi])
 
     let userProfileBio = isNotNullOrUndefined(userProfile) && isNotNullOrUndefined(userProfile.bio)
         ? userProfile.bio : "X".repeat(20);

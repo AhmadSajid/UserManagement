@@ -3,29 +3,24 @@ import React from 'react';
 import './App.css';
 
 import GithubUserProfile from './components/GithubUserProfile';
+import Header from './components/Header';
 
 function App() {
+
+  const userNames = ["trevor", "ahmadsajid", "ashrafxcoder", "mattn"];
+
   return (
     <div className="container">
 
-      <hr />
-      <hr />
+      <Header text="Using Gitub Users API" />
 
       <div className="row">
-        <div className="col-sm-3">
-        <GithubUserProfile userName={"trevor"} />
-        </div>
-        <div className="col-sm-3">
-          <GithubUserProfile userName={"ahmadsajid"} />
-        </div>
-        <div className="col-sm-3">
-        <GithubUserProfile userName={"ashrafxcoder"} />
-        </div>
-        <div className="col-sm-3">
-          <GithubUserProfile userName={"mattn"} />
-        </div>
+        {userNames.map(userName => (
+          <div key={userName} className="col-sm-3">
+            <GithubUserProfile userName={userName} />
+          </div>
+        ))}
       </div>
-
     </div>
   );
 }

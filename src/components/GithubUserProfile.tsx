@@ -15,9 +15,7 @@ const isNotNullOrUndefined = (obj: any) => obj !== null && obj !== undefined;
 
 function GithubUserProfile(props: GithubUserProfileProps) {
 
-
     const githubApi = `https://api.github.com/users/${props.userName}`;
-
 
     const userProfileInit: UserProfile = { bio: "" };
     const [userProfile, setUserProfile] = useState(userProfileInit);
@@ -26,7 +24,7 @@ function GithubUserProfile(props: GithubUserProfileProps) {
         fetch(githubApi)
             .then(response => response.json())
             .then(user => setUserProfile(user));
-    }, [githubApi])
+    }, [props.userName])
 
     let userProfileBio = isNotNullOrUndefined(userProfile) && isNotNullOrUndefined(userProfile.bio)
         ? userProfile.bio : "X".repeat(20);

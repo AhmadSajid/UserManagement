@@ -4,6 +4,7 @@ import './App.css';
 
 import GithubUserProfile from './components/GithubUserProfile';
 import Header from './components/Header';
+import UserProfile, { ReqresUsers } from './components/UserProfile';
 
 function App() {
 
@@ -15,9 +16,11 @@ function App() {
       <Header text="Using Gitub Users API" />
 
       <div className="row">
+        <ReqresUsers />
         {userNames.map(userName => (
           <div key={userName} className="col-sm-3">
-            <GithubUserProfile userName={userName} />
+            {/* <GithubUserProfile userName={userName} /> */}
+
           </div>
         ))}
       </div>

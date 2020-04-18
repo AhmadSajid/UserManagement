@@ -43,8 +43,7 @@ function ReqresUsers() {
             .then(response => response.json())
             .then(obj => setdata(obj.data));
     })
-
-
+    
     return (
         <React.Fragment>
             {data.map(user => (

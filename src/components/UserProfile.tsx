@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { url } from "inspector";
 
 interface User {
     id?: number;
@@ -31,36 +32,27 @@ function UserProfile(props: UserProfileProps) {
     );
 }
 
+function ReqresUsers() {
+    const url = "https://reqres.in/api/users";
 
-class ReqresUsers extends React.Component<{}, UserProfileState> {
+    const initialstate: User[] = [];
+    const [data, setdata] = useState(initialstate);
 
-    private url: string = "https://reqres.in/api/users";
-
-    constructor(props: any) {
-        super(props);
-
-        this.state = {
-            users: []
-        };
-    }
-
-
-    componentDidMount() {
-        fetch(this.url)
+    useEffect(() => {
+        fetch(url)
             .then(response => response.json())
-            .then(obj => this.setState({
-                users: obj.data
-            }));
-    }
+            .then(obj => setdata(obj.data));
+    })
 
 
-    render() {
-        return (
-            this.state.users.map(user => (
+    return (
+        <React.Fragment>
+            {data.map(user => (
                 <UserProfile key={user.id} user={user} />
-            ))
-        );
-    }
+            ))}
+        </React.Fragment>
+    );
+
 }
 
 export { ReqresUsers };
